@@ -17,8 +17,21 @@ you must sum the total_points for each clan and the total_people within that cla
 
 ------------------------------------------------------------------------------------
 
+METHOD 1:
+
 SELECT RANK() OVER (ORDER BY SUM(points) DESC) AS rank,
        COALESCE(NULLIF(clan, ''), '[no clan specified]') AS clan,
+       SUM(points) AS total_points, 
+       COUNT(name) AS total_people
+FROM people
+GROUP BY clan
+ORDER BY total_points DESC;
+
+METHOD 2:
+
+SELECT RANK() OVER (ORDER BY SUM(points) DESC) AS rank,
+       CASE WHEN clan = '' THEN '[no clan specified]'
+            ELSE clan END AS clan,
        SUM(points) AS total_points, 
        COUNT(name) AS total_people
 FROM people
