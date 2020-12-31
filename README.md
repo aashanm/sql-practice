@@ -1,2 +1,2 @@
 # SQL-Practice
-Leetcode and Hackerrank practice for SQL interview questions
+Practice for SQL-based interview questions from Leetcode, HackerRank, and Codewars
